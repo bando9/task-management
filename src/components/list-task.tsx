@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { dataTasks } from "../lib/storage";
 import { Task } from "./task";
 
@@ -23,7 +24,12 @@ export function ListTask() {
           title,
           status: { statusName },
           description,
+          createdAt,
         } = task;
+
+        const dateOfCreatedAt = dayjs(createdAt).format("MMMM D, YYYY");
+        // const now = dayjs();
+        // console.log(dateOfCreatedAt.format("MMMM D, YYYY"));
 
         return (
           <Task
@@ -32,6 +38,7 @@ export function ListTask() {
             statusName={statusName}
             className={getStatusBadge(statusName)}
             description={description ?? ""}
+            createdAt={dateOfCreatedAt}
           />
         );
       })}
