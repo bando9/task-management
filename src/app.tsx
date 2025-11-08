@@ -3,14 +3,8 @@ import { Summary } from "./components/summary";
 import { Footer } from "./components/footer";
 import { ListTask } from "./components/list-task";
 import "./index.css";
-import { dataTasks } from "./lib/storage";
 import { SearchForm } from "./components/search-form";
-
-function sortByPriority() {
-  const tasks = dataTasks;
-  tasks.sort((a, b) => a.status.id - b.status.id);
-}
-sortByPriority();
+import "@fontsource/poppins";
 
 function App() {
   return (
