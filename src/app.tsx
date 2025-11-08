@@ -5,7 +5,8 @@ import { ListTask } from "./components/list-task";
 import "./index.css";
 import { SearchForm } from "./components/search-form";
 import "@fontsource/poppins";
-import { DayJS } from "./components/day-js";
+// import { DayJS } from "./components/day-js";
+import { SlugifyString } from "./components/slugify";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
         </section>
 
         <section className="mt-10 ">
-          <DayJS />
+          {/* <DayJS /> */}
+          <SlugifyString />
         </section>
 
         <Footer />
