@@ -1,4 +1,3 @@
-import searchIcon from "/search.svg";
 import { Summary } from "./components/summary";
 import { Footer } from "./components/footer";
 import { ListTask } from "./components/list-task";
@@ -23,7 +22,7 @@ function App() {
         <section className=" mt-5 flex justify-center">
           <div>
             <h1 className="text-2xl font-semibold mb-4">Today</h1>
-            <SearchForm searchIcon={searchIcon} />
+            <SearchForm />
             <ListTask />
           </div>
         </section>
