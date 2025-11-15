@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import type { Task } from "../lib/storage";
 import { DeleteDialog } from "./delete-dialog";
-import { Badge } from "@radix-ui/themes";
 import { RiCheckDoubleFill } from "@remixicon/react";
 import { TaskDetail } from "./task-detail";
 
@@ -12,20 +11,20 @@ interface TaskItemProps {
 export function TaskItem({ task }: TaskItemProps) {
   const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");
 
-  function getBadgeStatus(status: string) {
-    switch (status.toLowerCase()) {
-      case "backlog":
-        return "gray";
-      case "to do":
-        return "amber";
-      case "in-progress":
-        return "indigo";
-      case "done":
-        return "green";
-    }
-  }
+  // function getBadgeStatus(status: string) {
+  //   switch (status.toLowerCase()) {
+  //     case "backlog":
+  //       return "gray";
+  //     case "to do":
+  //       return "amber";
+  //     case "in-progress":
+  //       return "indigo";
+  //     case "done":
+  //       return "green";
+  //   }
+  // }
 
-  const badgeStatus = getBadgeStatus(task.status.name);
+  // const badgeStatus = getBadgeStatus(task.status.name);
 
   return (
     <li className="mb-3 w-2xl  border-2 border-blue-300 rounded-lg p-2">
@@ -40,9 +39,9 @@ export function TaskItem({ task }: TaskItemProps) {
             Created {formattedCreatedAt}
           </p>
 
-          <Badge color={badgeStatus} variant="soft" className="capitalize mt-5">
+          {/* <Badge color={badgeStatus} variant="soft" className="capitalize mt-5">
             {task.status.name}
-          </Badge>
+          </Badge> */}
         </div>
         <div className="flex flex-col items-end justify-between  gap-5 ">
           <TaskDetail />
