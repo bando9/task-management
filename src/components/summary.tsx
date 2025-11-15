@@ -1,6 +1,3 @@
-import checkIcon from ".././assets/check-circle.svg";
-import updatedIcon from ".././assets/refresh-ccw.svg";
-import createdIcon from ".././assets/file-plus.svg";
 import { dataTasks } from "../lib/storage";
 import { CardSummary } from "./card-summary";
 
@@ -18,21 +15,21 @@ export function Summary() {
     <div className="grid grid-cols-2 gap-5 mb-10">
       <CardSummary
         count={countIsDone()}
-        imageSrc={checkIcon}
+        imageSrc="/icons/check-circle.svg"
         colorBackgroundIcon="bg-green-100"
         statusSummary="completed"
       />
 
       <CardSummary
         count={32}
-        imageSrc={updatedIcon}
+        imageSrc="/icons/refresh-ccw.svg"
         colorBackgroundIcon="bg-slate-200"
         statusSummary="updated"
       />
 
       <CardSummary
         count={countTasks}
-        imageSrc={createdIcon}
+        imageSrc="/icons/file-plus.svg"
         colorBackgroundIcon="bg-slate-200"
         statusSummary="created"
       />
