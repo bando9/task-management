@@ -1,6 +1,6 @@
 import { Summary } from "./components/summary";
 import { Footer } from "./components/footer";
-import { ListTask } from "./components/list-task";
+import { TaskList } from "./components/task-list";
 import { SearchForm } from "./components/search-form";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <div>
             <h1 className="text-2xl font-semibold mb-4">Today</h1>
             <SearchForm />
-            <ListTask />
+            <TaskList />
           </div>
         </section>
         <Footer />

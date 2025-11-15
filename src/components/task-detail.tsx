@@ -1,10 +1,10 @@
-import { dataTasks } from "../lib/storage";
+import { initialDataTasks } from "../lib/storage";
 // import { RiInfoI } from "@remixicon/react";
 // import dayjs from "dayjs";
 
 export function TaskDetail() {
   const taskId = 5;
-  const foundTaskById = dataTasks.find((task) => task.id === taskId);
+  const foundTaskById = initialDataTasks.find((task) => task.id === taskId);
   if (!foundTaskById) {
     return;
   }

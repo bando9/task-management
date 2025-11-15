@@ -1,15 +1,15 @@
 import dayjs from "dayjs";
 import type { Task } from "../lib/storage";
-import { DeleteDialog } from "./delete-dialog";
-import { RiCheckDoubleFill } from "@remixicon/react";
+import { RiCheckDoubleFill, RiDeleteBin6Fill } from "@remixicon/react";
 import { TaskDetail } from "./task-detail";
 import { Badge } from "@/components/ui/badge";
 
 interface TaskItemProps {
   task: Task;
+  handleDelete: () => void;
 }
 
-export function TaskItem({ task }: TaskItemProps) {
+export function TaskItem({ task, handleDelete }: TaskItemProps) {
   const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");
 
   return (
@@ -25,7 +25,7 @@ export function TaskItem({ task }: TaskItemProps) {
             Created {formattedCreatedAt}
           </p>
 
-          <Badge status={task.status.name} className="capitalize">
+          <Badge status={task.status.name} className="capitalize mt-3">
             {task.status.name}
           </Badge>
         </div>
@@ -34,7 +34,11 @@ export function TaskItem({ task }: TaskItemProps) {
 
           <div className="flex gap-5 ">
             <RiCheckDoubleFill className="text-green-500 w-5 hover:cursor-pointer" />
-            <DeleteDialog />
+
+            <RiDeleteBin6Fill
+              className="w-4 text-red-600 hover:cursor-pointer"
+              onClick={handleDelete}
+            />
           </div>
         </div>
       </div>

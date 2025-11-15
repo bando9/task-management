@@ -1,4 +1,4 @@
-import { dataTasks } from "../lib/storage";
+import { initialDataTasks } from "../lib/storage";
 import { CardSummary } from "./card-summary";
 import {
   RiFileAddLine,
@@ -7,14 +7,14 @@ import {
 } from "@remixicon/react";
 
 function countIsDone() {
-  const tasks = dataTasks;
+  const tasks = initialDataTasks;
   const updatedTasks = tasks.filter((task) => task.status.name === "done");
   const count = updatedTasks.length;
   return count;
 }
 
 export function Summary() {
-  const countTasks = dataTasks.length;
+  const countTasks = initialDataTasks.length;
 
   return (
     <div className="grid grid-cols-2 gap-5 mb-10">

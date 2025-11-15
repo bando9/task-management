@@ -10,7 +10,7 @@ export type Task = {
   updatedAt?: Date;
 };
 
-export const dataTasks: Task[] = [
+export const initialDataTasks: Task[] = [
   {
     id: 1,
     title: "Setup Mindflow project",
