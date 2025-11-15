@@ -12,21 +12,6 @@ interface TaskItemProps {
 export function TaskItem({ task }: TaskItemProps) {
   const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");
 
-  // function getBadgeStatus(status: string) {
-  //   switch (status.toLowerCase()) {
-  //     case "backlog":
-  //       return "gray";
-  //     case "to do":
-  //       return "amber";
-  //     case "in-progress":
-  //       return "indigo";
-  //     case "done":
-  //       return "green";
-  //   }
-  // }
-
-  // const badgeStatus = getBadgeStatus(task.status.name);
-
   return (
     <li className="mb-3 w-2xl  border-2 border-blue-300 rounded-lg p-2">
       <div className="flex items-stretch justify-between">
@@ -40,7 +25,7 @@ export function TaskItem({ task }: TaskItemProps) {
             Created {formattedCreatedAt}
           </p>
 
-          <Badge variant={task.status.name} className="capitalize">
+          <Badge status={task.status.name} className="capitalize">
             {task.status.name}
           </Badge>
         </div>

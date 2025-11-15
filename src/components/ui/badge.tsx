@@ -17,24 +17,24 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
           "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+      },
+      status: {
         backlog:
-          "bg-gray-400/10 px-2 py-1 text-gray-400 inset-ring inset-ring-gray-400/20",
-        done: "bg-green-400/10 px-2 py-1 text-green-400 inset-ring inset-ring-green-400/20",
-        "to do":
-          "bg-yellow-400/10 px-2 py-1 text-yellow-400 inset-ring inset-ring-yellow-400/20",
+          "bg-gray-400/10 px-2 py-1 text-gray-700inset-ring inset-ring-gray-400/20",
+        done: "bg-green-400/10 px-2 py-1 text-green-700 inset-ring inset-ring-green-400/20",
+        todo: "bg-yellow-400/10 px-2 py-1 text-yellow-700 inset-ring inset-ring-yellow-400/20",
         "in-progress":
-          "bg-blue-400/10 px-2 py-1 text-blue-400 inset-ring inset-ring-blue-400/20",
+          "bg-blue-400/10 px-2 py-1 text-blue-700 inset-ring inset-ring-blue-400/20",
       },
     },
-    defaultVariants: {
-      variant: "default",
-    },
+    defaultVariants: {},
   }
 );
 
 function Badge({
   className,
   variant,
+  status,
   asChild = false,
   ...props
 }: React.ComponentProps<"span"> &
@@ -44,10 +44,11 @@ function Badge({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
+      className={cn(badgeVariants({ variant, status }), className)}
       {...props}
     />
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { Badge, badgeVariants };

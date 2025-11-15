@@ -2,7 +2,10 @@ export type Task = {
   id: number;
   title: string;
   description?: string;
-  status: { id: number; name: string };
+  status: {
+    id: number;
+    name: "backlog" | "done" | "todo" | "in-progress";
+  };
   createdAt?: Date;
   updatedAt?: Date;
 };
@@ -27,7 +30,7 @@ export const dataTasks: Task[] = [
       "Create initial task model structure for board, column, and task entities.",
     status: {
       id: 2,
-      name: "to do",
+      name: "todo",
     },
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -51,7 +54,7 @@ export const dataTasks: Task[] = [
       "Implement create, read, update, delete tasks with local state management.",
     status: {
       id: 2,
-      name: "to do",
+      name: "todo",
     },
     createdAt: new Date(),
     updatedAt: new Date(),
