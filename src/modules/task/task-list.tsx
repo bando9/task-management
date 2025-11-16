@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { initialDataTasks } from "../lib/storage";
+import { initialDataTasks } from "../../src/lib/storage";
 import { TaskItem } from "./task-item";
 
 export function TaskList() {

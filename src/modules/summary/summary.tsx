@@ -1,4 +1,4 @@
-import { initialDataTasks } from "../lib/storage";
+import { initialDataTasks } from "../../src/lib/storage";
 import { CardSummary } from "./card-summary";
 import {
   RiFileAddLine,

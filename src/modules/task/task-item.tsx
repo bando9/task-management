@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import type { Task } from "../lib/storage";
+import type { Task } from "../../src/lib/storage";
 import { RiCheckDoubleFill, RiDeleteBin6Fill } from "@remixicon/react";
 import { TaskDetail } from "./task-detail";
 import { Badge } from "@/components/ui/badge";

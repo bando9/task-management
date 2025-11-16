@@ -8,9 +8,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
+} from "../../src/components/ui/dialog";
+import { Button } from "../../src/components/ui/button";
+import { Badge } from "../../src/components/ui/badge";
 import dayjs from "dayjs";
 import { initialDataTasks } from "@/lib/storage";
 
