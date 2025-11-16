@@ -30,7 +30,7 @@ export function TaskDetail({ taskId }: TaskDetailProps) {
       <DialogTrigger asChild>
         <RiInfoI className="w-4 rounded-2xl text-slate-400 hover:text-slate-900 hover:cursor-pointer" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md md:max-w-2xl min-h-1/4">
         <DialogHeader className="my-3">
           <DialogTitle className="capitalize flex items-center justify-between mb-2">
             {task.title}
@@ -38,7 +38,7 @@ export function TaskDetail({ taskId }: TaskDetailProps) {
           </DialogTitle>
           <DialogDescription className="flex flex-col">
             {task?.description}
-            <span className="text-slate-600 text-xs italic mt-2 ">
+            <span className="text-slate-600 text-xs italic mt-5 ">
               Last updated {formattedUpdatedAt}
             </span>
 
@@ -50,7 +50,11 @@ export function TaskDetail({ taskId }: TaskDetailProps) {
 
         <DialogFooter className="sm:justify-start md:justify-end">
           <DialogClose asChild>
-            <Button variant="outline" className="hover:cursor-pointer">
+            <Button
+              variant="outline"
+              size="sm"
+              className="hover:cursor-pointer"
+            >
               Close
             </Button>
           </DialogClose>
