@@ -4,7 +4,7 @@ import { TaskItem } from "./task-item";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import type { Task } from "./schema";
+import { TaskSchema, type Task, type Tasks } from "@/modules/task/schema";
 
 export function TaskList() {
   const [tasks, setTasks] = useState(initialDataTasks);
@@ -18,18 +18,22 @@ export function TaskList() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const title = formData.get("title")?.toString();
-    if (!title) return null;
 
     const newId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
 
     const newTask: Task = {
       id: newId,
-      title,
+      title: formData.get("title")?.toString().trim() || "",
       status: { id: 2, name: "done" },
     };
 
-    const updateTasks = [...tasks, newTask];
+    const result = TaskSchema.safeParse(newTask);
+    if (!result.success) {
+      alert("New task data invalid");
+      return null;
+    }
+
+    const updateTasks: Tasks = [...tasks, newTask];
     setTasks(updateTasks);
 
     event.currentTarget.reset();
@@ -39,7 +43,7 @@ export function TaskList() {
     <section className="space-y-8">
       <form method="post" className="space-y-2" onSubmit={handleCreateTask}>
         <Label htmlFor="title">Title Task</Label>
-        <Input type="text" name="title" id="title" />
+        <Input type="text" name="title" id="title" required />
 
         <Button>Create Task</Button>
       </form>

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import type { Task } from "@/lib/storage";
+import type { Task } from "@/modules/task/schema";
 import {
   RiCheckboxCircleLine,
   RiCheckboxCircleFill,
