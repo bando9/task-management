@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
-import type { Task } from "../../src/lib/storage";
-import { RiCheckDoubleFill, RiDeleteBin6Fill } from "@remixicon/react";
+import type { Task } from "@/lib/storage";
+import {
+  RiCheckboxCircleLine,
+  RiCheckboxCircleFill,
+  RiDeleteBin6Fill,
+} from "@remixicon/react";
 import { TaskDetail } from "./task-detail";
 import { Badge } from "@/components/ui/badge";
 
@@ -11,6 +15,8 @@ interface TaskItemProps {
 
 export function TaskItem({ task, handleDelete }: TaskItemProps) {
   const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");
+
+  const statusIsDone = task.status.name === "done";
 
   return (
     <li className="mb-3 w-2xl  border-2 border-blue-300 rounded-lg p-2">
@@ -32,11 +38,16 @@ export function TaskItem({ task, handleDelete }: TaskItemProps) {
         <div className="flex flex-col items-end justify-between  gap-5 ">
           <TaskDetail taskId={task.id} />
 
-          <div className="flex gap-5 ">
-            <RiCheckDoubleFill className="text-green-500 w-5 hover:cursor-pointer" />
+          <div className="flex gap-5 items-center">
+            {!statusIsDone && (
+              <RiCheckboxCircleLine className="text-slate-700 cursor-pointer" />
+            )}
+            {statusIsDone && (
+              <RiCheckboxCircleFill className="text-green-700 cursor-pointer" />
+            )}
 
             <RiDeleteBin6Fill
-              className="w-4 text-red-600 hover:cursor-pointer"
+              className=" text-red-700 cursor-pointer"
               onClick={handleDelete}
             />
           </div>
