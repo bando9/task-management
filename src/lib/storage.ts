@@ -1,16 +1,6 @@
-export type Task = {
-  id: number;
-  title: string;
-  description?: string;
-  status: {
-    id: number;
-    name: "backlog" | "done" | "todo" | "in-progress";
-  };
-  createdAt?: Date;
-  updatedAt?: Date;
-};
+import type { Tasks } from "@/modules/task/schema";
 
-export const initialDataTasks: Task[] = [
+export const initialDataTasks: Tasks = [
   {
     id: 1,
     title: "Setup Mindflow project",

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { initialDataTasks, type Task } from "@/lib/storage";
+import { initialDataTasks } from "@/lib/storage";
 import { TaskItem } from "./task-item";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import type { Task } from "./schema";
 
 export function TaskList() {
   const [tasks, setTasks] = useState(initialDataTasks);
@@ -25,7 +26,7 @@ export function TaskList() {
     const newTask: Task = {
       id: newId,
       title,
-      status: { id: 3, name: "backlog" },
+      status: { id: 2, name: "done" },
     };
 
     const updateTasks = [...tasks, newTask];
@@ -39,6 +40,7 @@ export function TaskList() {
       <form method="post" className="space-y-2" onSubmit={handleCreateTask}>
         <Label htmlFor="title">Title Task</Label>
         <Input type="text" name="title" id="title" />
+
         <Button>Create Task</Button>
       </form>
 
