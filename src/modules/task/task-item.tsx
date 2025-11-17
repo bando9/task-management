@@ -22,7 +22,7 @@ export function TaskItem({ task, handleDelete }: TaskItemProps) {
     <li className="mb-3 w-2xl  border-2 border-blue-300 rounded-lg p-2">
       <div className="flex items-stretch justify-between">
         <div>
-          <h2 className="text-slate-800 text-lg font-semibold">
+          <h2 className="text-slate-800 text-lg font-semibold capitalize">
             {task.title}{" "}
           </h2>
           <p className="text-slate-700 text-sm ">{task.description}</p>
