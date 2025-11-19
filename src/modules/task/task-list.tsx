@@ -46,11 +46,12 @@ export function TaskList() {
     setTasks((tasks) =>
       tasks.map((task) => {
         if (task.id === id) {
+          const statusNameType: string = "done";
           const updateTask = {
             ...task,
             status: {
               id: 4,
-              name: "done",
+              name: statusNameType as "done",
             },
           };
           return updateTask;
