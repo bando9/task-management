@@ -12,20 +12,18 @@ interface TaskItemProps {
   task: Task;
   handleDelete: () => void;
   handleStatusIsDone: () => void;
+  handleStatusIsTodo: () => void;
 }
 
 export function TaskItem({
   task,
   handleDelete,
   handleStatusIsDone,
+  handleStatusIsTodo,
 }: TaskItemProps) {
   const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");
 
   const statusIsDone = task.status.name === "done";
-
-  function handleStatusIsTodo(id: number) {
-    console.log("Checklist status todo", id);
-  }
 
   return (
     <li className="mb-3 w-2xl  border-2 border-blue-300 rounded-lg p-2">
@@ -51,7 +49,7 @@ export function TaskItem({
             {statusIsDone ? (
               <RiCheckboxCircleFill
                 className="text-green-700 cursor-pointer"
-                onClick={() => handleStatusIsTodo(task.id)}
+                onClick={handleStatusIsTodo}
               />
             ) : (
               <RiCheckboxCircleLine

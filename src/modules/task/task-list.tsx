@@ -24,7 +24,7 @@ export function TaskList() {
     const newTask: Task = {
       id: newId,
       title: formData.get("title")?.toString().trim() || "",
-      status: { id: 2, name: "backlog" },
+      status: { id: 2, name: "todo" },
       description: "-".trim(),
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -62,8 +62,28 @@ export function TaskList() {
     );
   }
 
+  function handleStatusIsTodo(id: number) {
+    setTasks((tasks) =>
+      tasks.map((task) => {
+        if (task.id === id) {
+          const statusNameType: string = "todo";
+          const updateTask = {
+            ...task,
+            status: {
+              id: 2,
+              name: statusNameType as "todo",
+            },
+          };
+          return updateTask;
+        } else {
+          return task;
+        }
+      })
+    );
+  }
+
   return (
-    <section className="space-y-8">
+    <section className="space-y-8 w-2xl">
       <form method="post" className="space-y-2" onSubmit={handleCreateTask}>
         <Label htmlFor="title">Title Task</Label>
         <Input type="text" name="title" id="title" required />
@@ -79,6 +99,7 @@ export function TaskList() {
               task={task}
               handleDelete={() => handleDelete(task.id)}
               handleStatusIsDone={() => handleStatusIsDone(task.id)}
+              handleStatusIsTodo={() => handleStatusIsTodo(task.id)}
             />
           );
         })}
