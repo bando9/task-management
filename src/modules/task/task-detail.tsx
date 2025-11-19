@@ -11,15 +11,14 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
-import { initialDataTasks } from "@/lib/storage";
 import { Badge } from "@/components/ui/badge";
+import type { Task } from "@/modules/task/schema";
 
 interface TaskDetailProps {
-  taskId: number;
+  task: Task;
 }
 
-export function TaskDetail({ taskId }: TaskDetailProps) {
-  const task = initialDataTasks.find((task) => task.id === taskId);
+export function TaskDetail({ task }: TaskDetailProps) {
   if (!task) return;
 
   const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");

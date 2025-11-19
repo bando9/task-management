@@ -45,7 +45,7 @@ export function TaskItem({
           </Badge>
         </div>
         <div className="flex flex-col items-end justify-between  gap-5 ">
-          <TaskDetail taskId={task.id} />
+          <TaskDetail task={task} />
 
           <div className="flex gap-5 items-center">
             {statusIsDone ? (
