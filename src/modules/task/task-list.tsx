@@ -30,14 +30,16 @@ export function TaskList() {
 
     const newId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
 
-    const statusName = formData.get("status");
-    console.log(statusName);
+    const statusValue: FormDataEntryValue | null = formData.get("status");
+
+    const taskStatus: "backlog" | "done" | "todo" | "in-progress" =
+      statusValue as "backlog" | "done" | "todo" | "in-progress";
 
     const newTask: Task = {
       id: newId,
       title: formData.get("title")?.toString().trim() || "",
       description: formData.get("description")?.toString().trim() || "",
-      status: { id: 2, name: "todo" },
+      status: { id: 1, name: taskStatus },
       createdAt: new Date(),
       updatedAt: new Date(),
     };
