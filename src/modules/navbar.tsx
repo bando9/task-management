@@ -1,48 +1,31 @@
 import { RiGlobalFill, RiKanbanView2, RiTableView } from "@remixicon/react";
+import { Link, useLocation } from "react-router";
 
 const menuData = [
-  { name: "Backlog", icon: <RiTableView />, route: "/" },
-  { name: "Board", icon: <RiKanbanView2 />, route: "/board" },
-  { name: "Summary", icon: <RiGlobalFill />, route: "/summary" },
+  { id: 1, label: "Backlog", icon: RiTableView, link: "/" },
+  { id: 2, label: "Board", icon: RiKanbanView2, link: "/board" },
+  { id: 3, label: "Summary", icon: RiGlobalFill, link: "/summary" },
 ];
 
-console.log(menuData);
+export function NavBar() {
+  const active: string = "border-b-4 border-blue-700 text-blue-600";
+  const location = useLocation();
 
-export function Navbar() {
   return (
     <nav>
       <ul className="flex gap-24 w-full justify-center items-center border-b-2 pb-1">
         {menuData.map((item) => {
           return (
-            <li key={item.name}>
-              <a
-                href={item.route}
-                className="flex gap-1 items-center px font-semibold"
+            <li key={item.label}>
+              <Link
+                to={item.link}
+                className={`flex gap-1 items-center font-semibold ${location.pathname === item.link ? active : ""} `}
               >
-                {item.icon} {item.name}
-              </a>
+                <item.icon /> {item.label}
+              </Link>
             </li>
           );
         })}
-        {/* <li>
-          <a
-            href="/"
-            className="flex gap-1 items-center px font-semibold  border-b-3 border-blue-700 text-blue-600"
-          >
-            <RiTableView /> Backlog
-          </a>
-        </li>
-        <li>
-          <a href="/board" className="flex gap-1 items-center font-semibold">
-            <RiKanbanView2 />
-            Board
-          </a>
-        </li>
-        <li>
-          <a href="/summary" className="flex gap-1 items-center font-semibold">
-            <RiGlobalFill className="w-5" /> Summary
-          </a>
-        </li> */}
       </ul>
     </nav>
   );

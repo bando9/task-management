@@ -5,7 +5,7 @@ import {
   RiFileCheckLine,
   RiFileEditLine,
 } from "@remixicon/react";
-import { Navbar } from "../navbar";
+import { NavBar } from "@/modules/navbar";
 
 function countIsDone() {
   const tasks = initialDataTasks;
@@ -19,7 +19,7 @@ export function Summary() {
 
   return (
     <>
-      <Navbar />
+      <NavBar />
       <div className="grid grid-cols-2 gap-5 mb-10">
         <CardSummary
           count={countIsDone()}

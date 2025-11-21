@@ -1,9 +1,9 @@
-import { Navbar } from "@/modules/navbar";
+import { NavBar } from "@/modules/navbar";
 
 export function BoardView() {
   return (
     <>
-      <Navbar />
+      <NavBar />
       <h1>Hello from Board View</h1>
     </>
   );
