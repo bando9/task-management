@@ -5,6 +5,7 @@ import {
   RiFileCheckLine,
   RiFileEditLine,
 } from "@remixicon/react";
+import { Navbar } from "../navbar";
 
 function countIsDone() {
   const tasks = initialDataTasks;
@@ -17,26 +18,29 @@ export function Summary() {
   const countTasks = initialDataTasks.length;
 
   return (
-    <div className="grid grid-cols-2 gap-5 mb-10">
-      <CardSummary
-        count={countIsDone()}
-        icon={<RiFileCheckLine />}
-        colorBackgroundIcon="bg-green-100"
-        statusSummary="completed"
-      />
-      <CardSummary
-        count={32}
-        icon={<RiFileEditLine />}
-        colorBackgroundIcon="bg-slate-200"
-        statusSummary="updated"
-      />
+    <>
+      <Navbar />
+      <div className="grid grid-cols-2 gap-5 mb-10">
+        <CardSummary
+          count={countIsDone()}
+          icon={<RiFileCheckLine />}
+          colorBackgroundIcon="bg-green-100"
+          statusSummary="completed"
+        />
+        <CardSummary
+          count={32}
+          icon={<RiFileEditLine />}
+          colorBackgroundIcon="bg-slate-200"
+          statusSummary="updated"
+        />
 
-      <CardSummary
-        count={countTasks}
-        icon={<RiFileAddLine />}
-        colorBackgroundIcon="bg-slate-200"
-        statusSummary="created"
-      />
-    </div>
+        <CardSummary
+          count={countTasks}
+          icon={<RiFileAddLine />}
+          colorBackgroundIcon="bg-slate-200"
+          statusSummary="created"
+        />
+      </div>
+    </>
   );
 }

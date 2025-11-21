@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import App from "@/app";
 import { BoardView } from "@/modules/board/board-view";
-import { BacklogView } from "@/modules/board/backlog-view";
+import { Summary } from "@/modules/summary/summary";
 
 const router = createBrowserRouter([
   {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     element: <BoardView />,
   },
   {
-    path: "/backlog",
-    element: <BacklogView />,
+    path: "/summary",
+    element: <Summary />,
   },
 ]);
 
