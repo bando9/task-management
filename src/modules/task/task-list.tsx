@@ -98,7 +98,7 @@ export function TaskList() {
   }
 
   return (
-    <section className="space-y-8 w-2xl">
+    <section className="space-y-8 w-3xl">
       <form method="post" className="space-y-2" onSubmit={handleCreateTask}>
         <Label htmlFor="title">Title Task</Label>
         <Input type="text" name="title" id="title" required />

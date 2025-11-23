@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import type { Task } from "@/modules/task/schema";
 import {
   RiCheckboxCircleLine,
@@ -21,49 +20,39 @@ export function TaskItem({
   handleStatusIsDone,
   handleStatusIsTodo,
 }: TaskItemProps) {
-  const formattedCreatedAt = dayjs(task.createdAt).format("MMMM D, YYYY");
-
   const statusIsDone = task.status.name === "done";
 
   return (
-    <li className="mb-3 w-2xl  border-2 border-blue-300 rounded-lg p-2">
-      <div className="flex items-stretch justify-between">
-        <div>
-          <h2 className="text-slate-800 text-lg font-semibold capitalize">
-            {task.title}{" "}
-          </h2>
-          <p className="text-slate-700 text-sm ">{task.description}</p>
+    <li className="mb-3 w-full  border-2 border-blue-300 rounded-lg p-2 flex items-center justify-between">
+      <div className="w-1/2 flex items-center gap-2">
+        {statusIsDone ? (
+          <RiCheckboxCircleFill
+            className="text-green-700 cursor-pointer"
+            onClick={handleStatusIsTodo}
+          />
+        ) : (
+          <RiCheckboxCircleLine
+            className="text-slate-700 cursor-pointer"
+            onClick={handleStatusIsDone}
+          />
+        )}
 
-          <p className="text-slate-600 text-xs mt-2 italic">
-            Created {formattedCreatedAt}
-          </p>
+        <h2 className="text-slate-800 text-base font-semibold capitalize ">
+          {task.title}
+        </h2>
+      </div>
 
-          <Badge status={task.status.name} className="capitalize mt-3">
-            {task.status.name}
-          </Badge>
-        </div>
-        <div className="flex flex-col items-end justify-between  gap-5 ">
-          <TaskDetail task={task} />
+      <Badge status={task.status.name} className="capitalize ">
+        {task.status.name}
+      </Badge>
 
-          <div className="flex gap-5 items-center">
-            {statusIsDone ? (
-              <RiCheckboxCircleFill
-                className="text-green-700 cursor-pointer"
-                onClick={handleStatusIsTodo}
-              />
-            ) : (
-              <RiCheckboxCircleLine
-                className="text-slate-700 cursor-pointer"
-                onClick={handleStatusIsDone}
-              />
-            )}
+      <div className="flex gap-3">
+        <TaskDetail task={task} />
 
-            <RiDeleteBin6Fill
-              className=" text-red-700 cursor-pointer"
-              onClick={handleDelete}
-            />
-          </div>
-        </div>
+        <RiDeleteBin6Fill
+          className=" text-red-700 cursor-pointer"
+          onClick={handleDelete}
+        />
       </div>
     </li>
   );

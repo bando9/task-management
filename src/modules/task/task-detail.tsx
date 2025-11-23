@@ -1,4 +1,4 @@
-import { RiInfoI } from "@remixicon/react";
+import { RiInformationLine } from "@remixicon/react";
 import {
   Dialog,
   DialogClose,
@@ -27,7 +27,7 @@ export function TaskDetail({ task }: TaskDetailProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <RiInfoI className="w-4 rounded-2xl text-slate-400 hover:text-slate-900 hover:cursor-pointer" />
+        <RiInformationLine className="rounded-2xl text-slate-500 hover:text-slate-900 hover:cursor-pointer" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-md md:max-w-2xl min-h-1/4">
         <DialogHeader className="my-3">
