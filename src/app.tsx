@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { Footer } from "./components/footer";
 import { SearchForm } from "./components/search-form";
 import { TaskList } from "./modules/task/task-list";
 
@@ -9,17 +8,14 @@ function App() {
 
   return (
     <>
-      <main className="flex flex-col items-center w-full min-h-screen p-10 overflow-hidden transition-all duration-300 mx-auto">
-        <section className="space-y-8">
-          <div className="mt-3">
-            <h1 className="text-2xl font-semibold">Today</h1>
-            <p className="text-slate-400 mb-4 text-sm">{now}</p>
-          </div>
-          <SearchForm />
-          <TaskList />
-        </section>
-        <Footer />
-      </main>
+      <section className="space-y-8 pt-10">
+        <div className="mt-3">
+          <h1 className="text-2xl font-semibold">Today</h1>
+          <p className="text-slate-400 mb-4 text-sm">{now}</p>
+        </div>
+        <SearchForm />
+        <TaskList />
+      </section>
     </>
   );
 }

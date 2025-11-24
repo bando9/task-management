@@ -1,4 +1,3 @@
-import { Footer } from "@/components/footer";
 import {
   Card,
   CardContent,
@@ -26,7 +25,7 @@ export function TaskId() {
 
   return (
     <>
-      <main className="flex flex-col items-center w-full min-h-screen h-screen p-10 transition-all duration-300 mx-auto space-y-5 ">
+      <main className="flex flex-col items-center w-full min-h-screen p-10 transition-all duration-300 mx-auto space-y-5 ">
         <Card className="w-full max-w-sm">
           <CardHeader>
             <CardTitle>{task.title}</CardTitle>
@@ -35,8 +34,6 @@ export function TaskId() {
           <CardFooter className="flex-col gap-2"></CardFooter>
         </Card>
       </main>
-
-      <Footer />
     </>
   );
 }

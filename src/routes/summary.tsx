@@ -5,7 +5,6 @@ import {
   RiFileCheckLine,
   RiFileEditLine,
 } from "@remixicon/react";
-import { Footer } from "@/components/footer";
 
 function countIsDone() {
   const tasks = initialDataTasks;
@@ -43,8 +42,6 @@ export function Summary() {
             />
           </div>
         </section>
-
-        <Footer />
       </main>
     </>
   );

@@ -1,4 +1,3 @@
-import { Footer } from "@/components/footer";
 import { initialDataTasks } from "@/lib/storage";
 
 export function BoardView() {
@@ -56,8 +55,6 @@ export function BoardView() {
             </div>
           </div>
         </section>
-
-        <Footer />
       </main>
     </>
   );

@@ -9,7 +9,6 @@ export function Footer() {
         className="hover:underline text-blue-600 font-medium"
         target="_blank"
       >
-        {" "}
         Bando Mega.{" "}
       </a>
       All Rights Reserved.
