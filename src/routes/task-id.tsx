@@ -5,16 +5,27 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { initialDataTasks } from "@/lib/storage";
-import { useParams } from "react-router";
+import type { Tasks } from "@/modules/task/schema";
+import { Link, useParams } from "react-router";
 
 export function TaskId() {
-  window.scrollTo(0, 0);
-  const tasks = initialDataTasks;
-
   const params = useParams();
   const { taskId } = params;
-  const task = tasks.find((task) => task.id === Number(taskId));
+
+  window.scrollTo(0, 0);
+  const storedTasks = localStorage.getItem("tasks");
+  if (!storedTasks) {
+    return (
+      <>
+        <h1>Task data unavailable</h1>
+        <Link to="/">Go to home</Link>
+      </>
+    );
+  }
+
+  const parsedTasks = JSON.parse(storedTasks) as Tasks;
+
+  const task = parsedTasks.find((task) => task.id === Number(taskId));
 
   if (!task) {
     return (
