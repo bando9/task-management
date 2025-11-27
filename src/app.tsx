@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { SearchForm } from "@/components/search-form";
 import { TaskList } from "@/modules/task/task-list";
-import { CounterIncrement } from "./modules/experiment/counter";
 
 function App() {
   const nowDate = new Date();
@@ -10,7 +9,6 @@ function App() {
   return (
     <>
       <section className="space-y-8 pt-10">
-        <CounterIncrement />
         <div className="mt-3">
           <h1 className="text-2xl font-semibold">Today</h1>
           <p className="text-slate-400 mb-4 text-sm">{now}</p>

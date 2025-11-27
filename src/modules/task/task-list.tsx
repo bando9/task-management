@@ -16,7 +16,6 @@ import {
 
 export function TaskList() {
   const [tasks, setTasks] = useState(initialDataTasks);
-  const [status, setStatus] = useState("");
 
   function handleDelete(id: number) {
     const updatedTasks = tasks.filter((task) => task.id !== id);
@@ -30,19 +29,22 @@ export function TaskList() {
 
     const newId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
 
-    const statusValue: FormDataEntryValue | null = formData.get("status");
-
-    const taskStatus: "backlog" | "done" | "todo" | "in-progress" =
-      statusValue as "backlog" | "done" | "todo" | "in-progress";
+    const statusName = formData.get("status-name") as
+      | "backlog"
+      | "done"
+      | "todo"
+      | "in-progress";
 
     const newTask: Task = {
       id: newId,
       title: formData.get("title")?.toString().trim() || "",
       description: formData.get("description")?.toString().trim() || "",
-      status: { id: 1, name: taskStatus },
+      status: { id: 1, name: statusName },
       createdAt: new Date(),
       updatedAt: new Date(),
     };
+
+    console.log(newTask.status.name);
 
     const result = TaskSchema.safeParse(newTask);
     if (!result.success) {
@@ -54,7 +56,6 @@ export function TaskList() {
     setTasks(updateTasks);
 
     event.currentTarget.reset();
-    setStatus("");
   }
 
   function handleStatusIsDone(id: number) {
@@ -106,11 +107,11 @@ export function TaskList() {
         <Label htmlFor="description">Description </Label>
         <Input type="text" name="description" id="description" />
 
-        <Select onValueChange={setStatus} value={status}>
+        <Select name="status-name">
           <SelectTrigger className="w-36">
             <SelectValue placeholder="Select Status" />
           </SelectTrigger>
-          <SelectContent id="status">
+          <SelectContent>
             <SelectGroup>
               <SelectItem value="backlog">Backlog</SelectItem>
               <SelectItem value="todo">Todo</SelectItem>
@@ -119,7 +120,6 @@ export function TaskList() {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <input type="hidden" name="status" value={status} />
 
         <Button>Create Task</Button>
       </form>
