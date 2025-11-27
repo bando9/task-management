@@ -1,6 +1,33 @@
-import { initialDataTasks } from "@/lib/storage";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import dayjs from "dayjs";
+import type { StatusSlug, Task, Tasks } from "@/modules/task/schema";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router";
 
 export function BoardView() {
+  const storedTasks = localStorage.getItem("tasks");
+  if (!storedTasks) {
+    return (
+      <>
+        <h1>Task not Found</h1>
+        <Link to="/">Go to home</Link>
+      </>
+    );
+  }
+
+  const parsedTasks = JSON.parse(storedTasks) as Tasks;
+
   return (
     <>
       <main className="w-full min-h-screen p-10 overflow-hidden transition-all duration-300 mx-auto ">
@@ -16,7 +43,15 @@ export function BoardView() {
                         10
                       </span>
                     </h1>
-                    <TaskListBacklog />
+                    <ul>
+                      {parsedTasks
+                        .filter((task) => {
+                          return task.status.slug === "backlog";
+                        })
+                        .map((task) => {
+                          return <TaskBoardPopover key={task.id} task={task} />;
+                        })}
+                    </ul>
                   </div>
 
                   <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
@@ -27,7 +62,15 @@ export function BoardView() {
                       </span>
                     </h1>
 
-                    <TaskListTodo />
+                    <ul>
+                      {parsedTasks
+                        .filter((task) => {
+                          return task.status.slug === "todo";
+                        })
+                        .map((task) => {
+                          return <TaskBoardPopover key={task.id} task={task} />;
+                        })}
+                    </ul>
                   </div>
 
                   <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
@@ -37,7 +80,15 @@ export function BoardView() {
                         10
                       </span>
                     </h1>
-                    <TaskListInProgress />
+                    <ul>
+                      {parsedTasks
+                        .filter((task) => {
+                          return task.status.slug === "in-progress";
+                        })
+                        .map((task) => {
+                          return <TaskBoardPopover key={task.id} task={task} />;
+                        })}
+                    </ul>
                   </div>
 
                   <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
@@ -47,8 +98,15 @@ export function BoardView() {
                         10
                       </span>
                     </h1>
-
-                    <TaskListDone />
+                    <ul>
+                      {parsedTasks
+                        .filter((task) => {
+                          return task.status.slug === "done";
+                        })
+                        .map((task) => {
+                          return <TaskBoardPopover key={task.id} task={task} />;
+                        })}
+                    </ul>
                   </div>
                 </div>
               </section>
@@ -59,78 +117,6 @@ export function BoardView() {
     </>
   );
 }
-
-function TaskListBacklog() {
-  return (
-    <ul>
-      {initialDataTasks
-        .filter((task) => {
-          return task.status.slug === "backlog";
-        })
-        .map((task) => {
-          return <TaskBoardPopover key={task.id} task={task} />;
-        })}
-    </ul>
-  );
-}
-
-function TaskListTodo() {
-  return (
-    <ul>
-      {initialDataTasks
-        .filter((task) => {
-          return task.status.slug === "todo";
-        })
-        .map((task) => {
-          return <TaskBoardPopover key={task.id} task={task} />;
-        })}
-    </ul>
-  );
-}
-
-function TaskListDone() {
-  return (
-    <ul>
-      {initialDataTasks
-        .filter((task) => {
-          return task.status.slug === "done";
-        })
-        .map((task) => {
-          return <TaskBoardPopover key={task.id} task={task} />;
-        })}
-    </ul>
-  );
-}
-
-function TaskListInProgress() {
-  return (
-    <ul>
-      {initialDataTasks
-        .filter((task) => {
-          return task.status.slug === "in-progress";
-        })
-        .map((task) => {
-          return <TaskBoardPopover key={task.id} task={task} />;
-        })}
-    </ul>
-  );
-}
-
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import dayjs from "dayjs";
-import type { StatusSlug, Task } from "@/modules/task/schema";
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 interface TaskDetailProps {
   task: Task;
