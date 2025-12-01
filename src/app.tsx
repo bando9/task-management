@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import { SearchForm } from "@/components/search-form";
-import { TaskList } from "@/modules/task/task-list";
+import { SearchForm } from "@/components/shared/search-form";
+import { TaskList } from "@/components/shared/task/task-list";
 
 function App() {
   const nowDate = new Date();

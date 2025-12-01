@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { initialDataTasks } from "@/lib/storage";
+import { initialDataTasks } from "@/data/storage";
 import { TaskItem } from "./task-item";
 import { Button } from "@/components/ui/button";
-import { type Tasks } from "@/modules/task/schema";
+import { type Tasks } from "@/schema/schema";
 
 import { Link } from "react-router";
 

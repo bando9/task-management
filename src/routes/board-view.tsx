@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
-import type { StatusSlug, Task, Tasks } from "@/modules/task/schema";
+import type { StatusSlug, Task, Tasks } from "@/schema/schema";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router";

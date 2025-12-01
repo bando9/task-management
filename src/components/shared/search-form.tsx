@@ -1,5 +1,9 @@
 import { RiSearch2Line } from "@remixicon/react";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
 import { Label } from "@radix-ui/react-label";
 
 export function SearchForm() {

@@ -1,4 +1,4 @@
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/shared/footer";
 import { RiGlobalFill, RiKanbanView2, RiTableView } from "@remixicon/react";
 import { Link, Outlet, useLocation } from "react-router";
 

@@ -1,4 +1,4 @@
-import { dataStatuses } from "@/lib/storage";
+import { dataStatuses } from "@/data/storage";
 import { z } from "zod";
 
 export type StatusSlug = "backlog" | "todo" | "in-progress" | "done";

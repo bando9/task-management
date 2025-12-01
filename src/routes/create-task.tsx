@@ -9,8 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { dataStatuses, initialDataTasks } from "@/lib/storage";
-import { TaskSchema, type Task, type Tasks } from "@/modules/task/schema";
+import { dataStatuses, initialDataTasks } from "@/data/storage";
+import { TaskSchema, type Task, type Tasks } from "@/schema/schema";
 import { useEffect, useState } from "react";
 import z from "zod";
 

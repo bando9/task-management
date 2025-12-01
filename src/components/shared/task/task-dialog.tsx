@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 import { Badge } from "@/components/ui/badge";
-import type { StatusSlug, Task } from "@/modules/task/schema";
+import type { StatusSlug, Task } from "@/schema/schema";
 
 interface TaskDetailProps {
   task: Task;

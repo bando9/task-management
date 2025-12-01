@@ -6,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { initialDataTasks } from "@/lib/storage";
-import type { StatusSlug, Tasks } from "@/modules/task/schema";
+import { initialDataTasks } from "@/data/storage";
+import type { StatusSlug, Tasks } from "@/schema/schema";
 import { RiDeleteBin6Fill, RiHome9Fill } from "@remixicon/react";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";

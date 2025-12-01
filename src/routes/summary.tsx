@@ -1,5 +1,5 @@
-import { initialDataTasks } from "@/lib/storage";
-import { CardSummary } from "../modules/summary/card-summary";
+import { initialDataTasks } from "@/data/storage";
+import { CardSummary } from "../components/shared/summary/card-summary";
 import {
   RiFileAddLine,
   RiFileCheckLine,
