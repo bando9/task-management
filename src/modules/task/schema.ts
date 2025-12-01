@@ -14,7 +14,7 @@ export const StatusSchema = z.object({
 export const TaskSchema = z.object({
   id: z.number().min(1).positive(),
   title: z.string().min(1).max(100),
-  description: z.string().min(1).max(150).optional(),
+  description: z.string().max(150).optional(),
   status: StatusSchema,
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
