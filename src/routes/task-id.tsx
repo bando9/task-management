@@ -17,6 +17,9 @@ export function TaskId() {
 
   const [tasks, setTasks] = useState(() => {
     const storedTasks = localStorage.getItem("tasks");
+
+    // TODO
+
     return storedTasks ? (JSON.parse(storedTasks) as Tasks) : initialDataTasks;
   });
 
@@ -59,6 +62,7 @@ export function TaskId() {
   function handleDelete(id: number) {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
+    window.location.href = "/";
   }
 
   return (

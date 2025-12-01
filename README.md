@@ -1,7 +1,7 @@
 # Mindflow
 
 **Mindflow** is a modern and intuitive **task management web app** built with **React, TypeScript, Tailwind CSS, and Vite**.  
-It helps you organize, prioritize, and track your tasks effortlessly — inspired by **Todoist**, **Jiraa**.
+It helps you organize, prioritize, and track your tasks effortlessly — inspired by **Todoist**, **Jira**.
 
 ## Links
 
