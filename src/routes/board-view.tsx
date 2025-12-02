@@ -31,9 +31,9 @@ export function BoardView() {
 
   return (
     <>
-      <div className="mt-2 flex flex-col md:flex-row relative w-full justify-center">
+      <div className="mt-2 flex flex-col  w-full justify-center">
         <div className=" p-5 bg-slate-100 grid grid-cols-4 gap-5 h-[515px] overflow-hidden transition-all duration-300">
-          <ScrollArea className="w-full h-120  bg-slate-200  rounded-md p-3">
+          <ScrollArea className="w-full h-120  bg-slate-200 relative rounded-md p-3">
             <div className="text-center mb-4 pb-2 text-slate-900 bg-slate-200 font-semibold border-b border-slate-400 sticky top-0 right-0 left-0">
               <h1>
                 Backlog

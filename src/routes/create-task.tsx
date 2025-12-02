@@ -99,7 +99,7 @@ export function CreateTask() {
             <Label htmlFor="description">Description </Label>
             <Input type="text" name="description" id="description" />
 
-            <Select name="status-slug">
+            <Select name="status-slug" defaultValue="backlog">
               <SelectTrigger className="w-36">
                 <SelectValue placeholder="Select Status" />
               </SelectTrigger>
