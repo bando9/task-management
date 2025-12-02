@@ -14,6 +14,17 @@ import { TaskSchema, type Task, type Tasks } from "@/schema/schema";
 import { useEffect, useState } from "react";
 import z from "zod";
 
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { RiAddLargeLine } from "@remixicon/react";
+
 export function CreateTask() {
   const [tasks, setTasks] = useState(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -66,33 +77,54 @@ export function CreateTask() {
   }
 
   return (
-    <section className="space-y-8 w-3xl mt-14">
-      <form method="post" className="space-y-2" onSubmit={handleCreateTask}>
-        <Label htmlFor="title">Title </Label>
-        <Input type="text" name="title" id="title" required />
+    <Dialog>
+      <form>
+        <DialogTrigger asChild>
+          <Button
+            variant="default"
+            className="flex gap-2 justify-center items-center"
+          >
+            <RiAddLargeLine /> Create Task
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>New Task</DialogTitle>
+          </DialogHeader>
 
-        <Label htmlFor="description">Description </Label>
-        <Input type="text" name="description" id="description" />
+          <form method="post" className="space-y-2" onSubmit={handleCreateTask}>
+            <Label htmlFor="title">Title </Label>
+            <Input type="text" name="title" id="title" required />
 
-        <Select name="status-slug">
-          <SelectTrigger className="w-36">
-            <SelectValue placeholder="Select Status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {dataStatuses.map((status) => {
-                return (
-                  <SelectItem value={status.slug} key={status.slug}>
-                    {status.name}
-                  </SelectItem>
-                );
-              })}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+            <Label htmlFor="description">Description </Label>
+            <Input type="text" name="description" id="description" />
 
-        <Button>Create Task</Button>
+            <Select name="status-slug">
+              <SelectTrigger className="w-36">
+                <SelectValue placeholder="Select Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {dataStatuses.map((status) => {
+                    return (
+                      <SelectItem value={status.slug} key={status.slug}>
+                        {status.name}
+                      </SelectItem>
+                    );
+                  })}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Create</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
       </form>
-    </section>
+    </Dialog>
   );
 }

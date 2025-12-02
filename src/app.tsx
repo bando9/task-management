@@ -1,9 +1,7 @@
 import dayjs from "dayjs";
 import { SearchForm } from "@/components/shared/search-form";
 import { TaskList } from "@/components/shared/task/task-list";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
-import { RiAddLargeLine } from "@remixicon/react";
+import { CreateTask } from "./routes/create-task";
 
 function App() {
   const nowDate = new Date();
@@ -17,15 +15,9 @@ function App() {
       </div>
       <div className="flex justify-between items-center mb-6">
         <SearchForm />
-        <Button>
-          <Link
-            to="/create-task"
-            className="flex gap-2 justify-center items-center"
-          >
-            <RiAddLargeLine /> Create Task
-          </Link>
-        </Button>
+        <CreateTask />
       </div>
+
       <TaskList />
     </section>
   );

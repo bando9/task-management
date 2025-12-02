@@ -8,7 +8,7 @@ import {
 
 function countIsDone() {
   const tasks = initialDataTasks;
-  const updatedTasks = tasks.filter((task) => task.status.name === "done");
+  const updatedTasks = tasks.filter((task) => task.status.slug === "done");
   const count = updatedTasks.length;
   return count;
 }

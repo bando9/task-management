@@ -19,7 +19,7 @@ export function TaskItem({
   handleDelete,
   handleToggleTaskStatus,
 }: TaskItemProps) {
-  const statusIsDone = task.status.name === "done";
+  const statusIsDone = task.status.slug === "done";
 
   return (
     <li className="mb-3 w-full  border-2 border-blue-300 rounded-lg p-2 flex items-center justify-between">
