@@ -41,21 +41,19 @@ export function TaskList() {
   }
 
   return (
-    <section className="space-y-8 w-3xl">
-      <ScrollArea className="h-80 w-full px-4 ">
-        <ul>
-          {tasks.map((task) => {
-            return (
-              <TaskItem
-                key={task.id}
-                task={task}
-                handleDelete={() => handleDelete(task.id)}
-                handleToggleTaskStatus={() => handleToggleTaskStatus(task.id)}
-              />
-            );
-          })}
-        </ul>
-      </ScrollArea>
-    </section>
+    <ScrollArea className="h-88 py-2 px-4 space-y-8 w-3xl border rounded-sm ">
+      <ul>
+        {tasks.map((task) => {
+          return (
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleDelete={() => handleDelete(task.id)}
+              handleToggleTaskStatus={() => handleToggleTaskStatus(task.id)}
+            />
+          );
+        })}
+      </ul>
+    </ScrollArea>
   );
 }

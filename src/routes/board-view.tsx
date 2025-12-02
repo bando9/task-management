@@ -14,6 +14,7 @@ import type { StatusSlug, Task, Tasks } from "@/schema/schema";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function BoardView() {
   const storedTasks = localStorage.getItem("tasks");
@@ -30,90 +31,89 @@ export function BoardView() {
 
   return (
     <>
-      <main className="w-full min-h-screen p-10 overflow-hidden transition-all duration-300 mx-auto ">
-        <section className="mt-14 ">
-          <div className="min-h-screen flex flex-col md:flex-row relative w-full">
-            <div className="flex-1 pt-7 p-10 bg-slate-100  min-h-screen overflow-hidden transition-all duration-300">
-              <section className="max-h-screen overflow-auto">
-                <div className="flex items-start gap-5 py-5 ">
-                  <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
-                    <h1 className="text-center mb-4 pb-2 text-slate-900 font-semibold border-b border-slate-400">
-                      Backlog
-                      <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
-                        10
-                      </span>
-                    </h1>
-                    <ul>
-                      {parsedTasks
-                        .filter((task) => {
-                          return task.status.slug === "backlog";
-                        })
-                        .map((task) => {
-                          return <TaskBoardPopover key={task.id} task={task} />;
-                        })}
-                    </ul>
-                  </div>
-
-                  <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
-                    <h1 className="text-center mb-4 pb-2 text-slate-900 font-semibold border-b border-slate-400">
-                      Todo
-                      <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
-                        10
-                      </span>
-                    </h1>
-
-                    <ul>
-                      {parsedTasks
-                        .filter((task) => {
-                          return task.status.slug === "todo";
-                        })
-                        .map((task) => {
-                          return <TaskBoardPopover key={task.id} task={task} />;
-                        })}
-                    </ul>
-                  </div>
-
-                  <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
-                    <h1 className="text-center mb-4 pb-2 text-slate-900 font-semibold border-b border-slate-400">
-                      In Progress
-                      <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
-                        10
-                      </span>
-                    </h1>
-                    <ul>
-                      {parsedTasks
-                        .filter((task) => {
-                          return task.status.slug === "in-progress";
-                        })
-                        .map((task) => {
-                          return <TaskBoardPopover key={task.id} task={task} />;
-                        })}
-                    </ul>
-                  </div>
-
-                  <div className="min-w-72 bg-slate-200 min-h-screen rounded-md p-3">
-                    <h1 className="text-center mb-4 pb-2 text-slate-900 font-semibold border-b border-slate-400">
-                      Done
-                      <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
-                        10
-                      </span>
-                    </h1>
-                    <ul>
-                      {parsedTasks
-                        .filter((task) => {
-                          return task.status.slug === "done";
-                        })
-                        .map((task) => {
-                          return <TaskBoardPopover key={task.id} task={task} />;
-                        })}
-                    </ul>
-                  </div>
-                </div>
-              </section>
+      <div className="mt-2 flex flex-col md:flex-row relative w-full justify-center">
+        <div className=" p-5 bg-slate-100 grid grid-cols-4 gap-5 h-[515px] overflow-hidden transition-all duration-300">
+          <ScrollArea className="w-full h-120  bg-slate-200  rounded-md p-3">
+            <div className="text-center mb-4 pb-2 text-slate-900 bg-slate-200 font-semibold border-b border-slate-400 sticky top-0 right-0 left-0">
+              <h1>
+                Backlog
+                <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
+                  10
+                </span>
+              </h1>
             </div>
-          </div>
-        </section>
-      </main>
+            <ul>
+              {parsedTasks
+                .filter((task) => {
+                  return task.status.slug === "backlog";
+                })
+                .map((task) => {
+                  return <TaskBoardPopover key={task.id} task={task} />;
+                })}
+            </ul>
+          </ScrollArea>
+
+          <ScrollArea className="w-full h-120   bg-slate-200  rounded-md p-3">
+            <div className="text-center mb-4 pb-2 text-slate-900 bg-slate-200 font-semibold border-b border-slate-400 sticky top-0 right-0 left-0">
+              <h1>
+                Todo
+                <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
+                  10
+                </span>
+              </h1>
+            </div>
+            <ul>
+              {parsedTasks
+                .filter((task) => {
+                  return task.status.slug === "todo";
+                })
+                .map((task) => {
+                  return <TaskBoardPopover key={task.id} task={task} />;
+                })}
+            </ul>
+          </ScrollArea>
+
+          <ScrollArea className="w-full h-120   bg-slate-200  rounded-md p-3">
+            <div className="text-center mb-4 pb-2 text-slate-900 bg-slate-200 font-semibold border-b border-slate-400 sticky top-0 right-0 left-0">
+              <h1>
+                In Progress
+                <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
+                  10
+                </span>
+              </h1>
+            </div>
+            <ul>
+              {parsedTasks
+                .filter((task) => {
+                  return task.status.slug === "in-progress";
+                })
+                .map((task) => {
+                  return <TaskBoardPopover key={task.id} task={task} />;
+                })}
+            </ul>
+          </ScrollArea>
+
+          <ScrollArea className="w-full h-120   bg-slate-200  rounded-md p-3">
+            <div className="text-center mb-4 pb-2 text-slate-900 bg-slate-200 font-semibold border-b border-slate-400 sticky top-0 right-0 left-0">
+              <h1>
+                Done
+                <span className="ms-1.5 inline-flex items-center rounded-md bg-slate-600/20 px-2 py-1 text-xs font-medium text-slate-800">
+                  10
+                </span>
+              </h1>
+            </div>
+            <ul>
+              {parsedTasks
+                .filter((task) => {
+                  return task.status.slug === "done";
+                })
+                .map((task) => {
+                  return <TaskBoardPopover key={task.id} task={task} />;
+                })}
+            </ul>
+          </ScrollArea>
+        </div>
+      </div>
     </>
   );
 }
