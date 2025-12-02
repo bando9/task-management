@@ -5,24 +5,13 @@ import {
   InputGroupInput,
 } from "../ui/input-group";
 import { Label } from "@radix-ui/react-label";
-import { useSearchParams } from "react-router";
 
-export function SearchForm() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query: string = searchParams.get("q") || "";
+interface SearchFormProps {
+  query: string | null;
+  handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const newQuery = event.target.value;
-    setSearchParams((currentSearchParams) => {
-      if (newQuery) {
-        currentSearchParams.set("q", newQuery);
-      } else {
-        currentSearchParams.delete("q");
-      }
-      return currentSearchParams;
-    });
-  }
-
+export function SearchForm({ query, handleSearchChange }: SearchFormProps) {
   return (
     <form className="max-w-lg w-full" method="get">
       <InputGroup>

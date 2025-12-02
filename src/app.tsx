@@ -5,6 +5,7 @@ import { CreateTask } from "./routes/create-task";
 import { useEffect, useState } from "react";
 import { dataStatuses, initialDataTasks } from "@/data/storage";
 import { TaskSchema, type Task, type Tasks } from "./schema/schema";
+import { useSearchParams } from "react-router";
 import z from "zod";
 
 function App() {
@@ -16,6 +17,21 @@ function App() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query: string = searchParams.get("q") || "";
+
+  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const newQuery = event.target.value;
+    setSearchParams((currentSearchParams) => {
+      if (newQuery) {
+        currentSearchParams.set("q", newQuery);
+      } else {
+        currentSearchParams.delete("q");
+      }
+      return currentSearchParams;
+    });
+  }
 
   function handleDelete(id: number) {
     const updatedTasks = tasks.filter((task) => task.id !== id);
@@ -93,11 +109,12 @@ function App() {
         <p className="text-slate-400 mb-4 text-sm">{now}</p>
       </div>
       <div className="flex justify-between items-center mb-6">
-        <SearchForm />
+        <SearchForm handleSearchChange={handleSearchChange} query={query} />
         <CreateTask handleCreateTask={handleCreateTask} />
       </div>
 
       <TaskList
+        query={query}
         tasks={tasks}
         handleDelete={handleDelete}
         handleToggleTaskStatus={handleToggleTaskStatus}
