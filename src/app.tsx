@@ -4,9 +4,19 @@ import { TaskList } from "@/features/components/task-list";
 import { CreateTask } from "./features/components/create-task";
 import { useEffect, useState } from "react";
 import { dataStatuses, initialDataTasks } from "@/data/storage";
-import { TaskSchema, type Task, type Tasks } from "@/features/schema/schema";
+import {
+  TaskSchema,
+  type StatusSlug,
+  type Task,
+  type Tasks,
+} from "@/features/schema/schema";
 import { useSearchParams } from "react-router";
 import z from "zod";
+
+export type UpdateStatusType = {
+  id: number;
+  statusSlug: StatusSlug;
+};
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -36,26 +46,6 @@ function App() {
   function handleDelete(id: number) {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
-  }
-
-  function handleToggleTaskStatus(id: number) {
-    const foundTask = tasks.find((task) => task.id === id);
-    if (!foundTask) return null;
-    const isTaskDone = foundTask.status.slug === "done";
-
-    const updatedStatusTask = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          status: isTaskDone
-            ? { id: 2, slug: "todo", name: "Todo" }
-            : { id: 4, slug: "done", name: "Done" },
-        };
-      } else {
-        return task;
-      }
-    });
-    setTasks(updatedStatusTask);
   }
 
   function handleCreateTask(event: React.FormEvent<HTMLFormElement>) {
@@ -99,11 +89,37 @@ function App() {
     }
   }
 
+  function handleUpdateSelect({ id, statusSlug }: UpdateStatusType) {
+    const status = dataStatuses.find((status) => status.slug === statusSlug);
+    const task = tasks.find((task) => task.id === id);
+
+    if (!status) return;
+
+    const updateStatusTask: Task = {
+      id,
+      title: task?.title || "",
+      description: task?.description,
+      status: status || dataStatuses[0],
+      updatedAt: new Date(),
+    };
+
+    TaskSchema.parse(updateStatusTask);
+
+    const updateTasks: Tasks = tasks.map((task) => {
+      if (task.id === id) {
+        return updateStatusTask;
+      }
+      return task;
+    });
+
+    setTasks(updateTasks);
+  }
+
   const nowDate = new Date();
   const now = dayjs(nowDate).format("MMMM D, YYYY");
 
   return (
-    <section className="space-y-5 pt-10">
+    <section className="space-y-5 pt-2">
       <div className="mt-3">
         <h1 className="text-2xl font-semibold">Today</h1>
         <p className="text-slate-400 mb-4 text-sm">{now}</p>
@@ -117,7 +133,7 @@ function App() {
         query={query}
         tasks={tasks}
         handleDelete={handleDelete}
-        handleToggleTaskStatus={handleToggleTaskStatus}
+        handleUpdateSelect={handleUpdateSelect}
       />
     </section>
   );

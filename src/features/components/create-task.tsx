@@ -33,7 +33,7 @@ export function CreateTask({ handleCreateTask }: CreateTaskProps) {
         <DialogTrigger asChild>
           <Button
             variant="default"
-            className="flex gap-2 justify-center items-center"
+            className="flex gap-2 justify-center items-center cursor-pointer"
           >
             <RiAddLargeLine /> Create Task
           </Button>

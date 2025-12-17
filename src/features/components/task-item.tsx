@@ -1,49 +1,61 @@
 import { RiInformationLine } from "@remixicon/react";
-import type { StatusSlug, Task } from "@/features/schema/schema";
-import {
-  RiCheckboxCircleLine,
-  RiCheckboxCircleFill,
-  RiDeleteBin6Fill,
-} from "@remixicon/react";
-import { Badge } from "@/components/ui/badge";
+import type { Task } from "@/features/schema/schema";
+import { RiDeleteBin6Fill } from "@remixicon/react";
 import { Link } from "react-router";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { dataStatuses } from "@/data/storage";
+import type { UpdateStatusType } from "@/app";
 
 interface TaskItemProps {
   task: Task;
   handleDelete: () => void;
-  handleToggleTaskStatus: () => void;
+  handleUpdateSelect: (payload: UpdateStatusType) => void;
 }
 
 export function TaskItem({
   task,
   handleDelete,
-  handleToggleTaskStatus,
+  handleUpdateSelect,
 }: TaskItemProps) {
-  const statusIsDone = task.status.slug === "done";
-
   return (
     <li className="mb-3 w-full  border-2 border-blue-300 rounded-lg p-2 flex items-center justify-between">
       <div className="w-1/2 flex items-center gap-2">
-        {statusIsDone ? (
-          <RiCheckboxCircleFill
-            className="text-green-700 cursor-pointer"
-            onClick={handleToggleTaskStatus}
-          />
-        ) : (
-          <RiCheckboxCircleLine
-            className="text-slate-700 cursor-pointer"
-            onClick={handleToggleTaskStatus}
-          />
-        )}
-
-        <h2 className="text-slate-800 text-base font-semibold capitalize ">
+        <h2 className="text-slate-800 text-base font-semibold capitalize ms-2">
           {task.title}
         </h2>
       </div>
 
-      <Badge status={task.status.slug as StatusSlug} className="capitalize ">
-        {task.status.name}
-      </Badge>
+      <Select
+        name="status-slug"
+        onValueChange={(value) =>
+          handleUpdateSelect({
+            id: task.id,
+            statusSlug: value as UpdateStatusType["statusSlug"],
+          })
+        }
+      >
+        <SelectTrigger className="w-32">
+          <SelectValue placeholder={task.status.name} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {dataStatuses.map((status) => {
+              return (
+                <SelectItem value={status.slug} key={status.slug}>
+                  {status.name}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
 
       <div className="flex gap-3">
         <Link to={`/tasks/${task.id}`}>

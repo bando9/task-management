@@ -3,7 +3,7 @@ export function Footer() {
 
   return (
     <footer className="p-4 text-center text-sm text-gray-600 ">
-      &copy; {currentYear}. Mindflow by
+      &copy; {currentYear}. Mindflow by{" "}
       <a
         href="https://bandomega.com"
         className="hover:underline text-blue-600 font-medium"
