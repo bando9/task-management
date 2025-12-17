@@ -1,5 +1,5 @@
 import { initialDataTasks } from "@/data/storage";
-import type { Tasks } from "@/schema/schema";
+import type { Tasks } from "@/features/schema/schema";
 
 export function getTasksFromLocalStorage() {
   const storedTasks = localStorage.getItem("tasks");

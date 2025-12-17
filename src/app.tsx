@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
-import { SearchForm } from "@/features/tasks/components/search-form";
-import { TaskList } from "@/features/tasks/components/task-list";
-import { CreateTask } from "./features/tasks/components/create-task";
+import { SearchForm } from "@/features/components/search-form";
+import { TaskList } from "@/features/components/task-list";
+import { CreateTask } from "./features/components/create-task";
 import { useEffect, useState } from "react";
 import { dataStatuses, initialDataTasks } from "@/data/storage";
-import { TaskSchema, type Task, type Tasks } from "@/schema/schema";
+import { TaskSchema, type Task, type Tasks } from "@/features/schema/schema";
 import { useSearchParams } from "react-router";
 import z from "zod";
 

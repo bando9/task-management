@@ -1,5 +1,5 @@
 import { TaskItem } from "./task-item";
-import { type Tasks } from "@/schema/schema";
+import { type Tasks } from "@/features/schema/schema";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface TaskListProps {

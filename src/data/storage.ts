@@ -1,4 +1,4 @@
-import type { Tasks } from "@/schema/schema";
+import type { Tasks } from "@/features/schema/schema";
 
 export const dataStatuses = [
   { id: 1, slug: "backlog", name: "Backlog" },

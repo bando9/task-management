@@ -1,5 +1,5 @@
 import { RiInformationLine } from "@remixicon/react";
-import type { StatusSlug, Task } from "@/schema/schema";
+import type { StatusSlug, Task } from "@/features/schema/schema";
 import {
   RiCheckboxCircleLine,
   RiCheckboxCircleFill,

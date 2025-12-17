@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import "@/index.css";
 import { Layout } from "@/layouts/layout";
 import App from "@/app";
-import { BoardView } from "@/features/kanban/routes/board-view";
-import { Summary } from "@/features/summary/routes/summary";
-import { TaskId } from "@/features/tasks/components/task-id";
+import { BoardView } from "@/features/pages/kanban-page";
+import { Summary } from "@/features/pages/summary-page";
+import { TaskId } from "@/features/components/task-id";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
