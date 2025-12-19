@@ -5,6 +5,7 @@ const menuData = [
   { id: 1, label: "Backlog", icon: RiTableView, link: "/" },
   { id: 2, label: "Board", icon: RiKanbanView2, link: "/board" },
   { id: 3, label: "Summary", icon: RiGlobalFill, link: "/summary" },
+  { id: 4, label: "Kanban", icon: RiKanbanView2, link: "/kanban" },
 ];
 
 export function NavBar() {
