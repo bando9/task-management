@@ -1,10 +1,10 @@
-import type { Tasks } from "@/features/schema/schema";
+import type { StatusSlug, Tasks } from "@/features/schema/schema";
 
 export const dataStatuses = [
-  { id: 1, slug: "backlog", name: "Backlog" },
-  { id: 2, slug: "todo", name: "Todo" },
-  { id: 3, slug: "in-progress", name: "In Progress" },
-  { id: 4, slug: "done", name: "Done" },
+  { id: 1, slug: "backlog" as StatusSlug, name: "Backlog" },
+  { id: 2, slug: "todo" as StatusSlug, name: "Todo" },
+  { id: 3, slug: "in-progress" as StatusSlug, name: "In Progress" },
+  { id: 4, slug: "done" as StatusSlug, name: "Done" },
 ];
 
 export const initialDataTasks: Tasks = [

@@ -42,7 +42,7 @@ const INITIAL_TASKS: Taskk[] = [
   },
 ];
 
-export function KanbanBoard() {
+export function Kanban() {
   const [taskss, setTaskss] = useState<Taskk[]>(INITIAL_TASKS);
 
   function handleDragEnd(event: DragEndEvent) {

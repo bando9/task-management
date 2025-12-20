@@ -1,4 +1,3 @@
-import { Footer } from "@/components/shared/footer";
 import { NavBar } from "@/components/shared/navbar";
 import { Outlet } from "react-router";
 
@@ -9,7 +8,6 @@ export function Layout() {
         <NavBar />
       </section>
       <Outlet />
-      <Footer />
     </main>
   );
 }
