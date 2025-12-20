@@ -7,6 +7,7 @@ import {
 } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import type { StatusSlug, Task, Tasks } from "../schema/schema";
+import dayjs from "dayjs";
 
 type ColumnType = {
   id: number;
@@ -17,7 +18,6 @@ type ColumnType = {
 const columns = dataStatuses;
 
 export function KanbanBoard() {
-  // const [tasks, setTasks] = useState<Tasks>(initialDataTasks);
   const [tasks, setTasks] = useState(() => {
     const storedTasks = localStorage.getItem("tasks");
     return storedTasks ? (JSON.parse(storedTasks) as Tasks) : initialDataTasks;
@@ -43,6 +43,7 @@ export function KanbanBoard() {
     const updateStatusTask: Task = {
       ...task,
       status: newStatusSlug || dataStatuses[0],
+      updatedAt: new Date(),
     };
 
     const updateTasks: Tasks = tasks.map((task) => {
@@ -111,6 +112,7 @@ function TaskCard({ task }: TaskCardProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: task.id,
   });
+  const formattedUpdatedAt = dayjs(task.updatedAt).format("MMMM D, YYYY");
 
   const style = transform
     ? {
@@ -128,7 +130,7 @@ function TaskCard({ task }: TaskCardProps) {
     >
       <h2 className="mb-3"> {task.title} </h2>
       <div className="flex justify-between items-center">
-        <p className="text-xs text-slate-600">December 30, 2025</p>
+        <p className="text-xs text-slate-600"> {formattedUpdatedAt} </p>
         <p className="inline-flex items-center rounded-md bg-slate-950/10 px-2 py-1 text-xs font-medium text-slate-800 inset-ring inset-ring-slate-950/20">
           5
         </p>

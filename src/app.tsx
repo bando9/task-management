@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { SearchForm } from "@/features/components/search-form";
 import { TaskList } from "@/features/components/task-list";
 import { CreateTask } from "./features/components/create-task";
@@ -100,6 +99,7 @@ function App() {
       title: task?.title || "",
       description: task?.description,
       status: status || dataStatuses[0],
+      createdAt: task?.createdAt,
       updatedAt: new Date(),
     };
 
@@ -115,16 +115,9 @@ function App() {
     setTasks(updateTasks);
   }
 
-  const nowDate = new Date();
-  const now = dayjs(nowDate).format("MMMM D, YYYY");
-
   return (
     <section className="space-y-5 pt-2">
-      <div className="mt-3">
-        <h1 className="text-2xl font-semibold">Today</h1>
-        <p className="text-slate-400 mb-4 text-sm">{now}</p>
-      </div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 mt-3">
         <SearchForm handleSearchChange={handleSearchChange} query={query} />
         <CreateTask handleCreateTask={handleCreateTask} />
       </div>

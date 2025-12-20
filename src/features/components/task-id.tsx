@@ -8,10 +8,11 @@ import {
 } from "@/components/ui/card";
 import { initialDataTasks } from "@/data/storage";
 import type { StatusSlug, Tasks } from "@/features/schema/schema";
-import { RiDeleteBin6Fill, RiHome9Fill } from "@remixicon/react";
+import { RiDeleteBin6Fill, RiHome9Fill, RiPencilFill } from "@remixicon/react";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 
 export function TaskId() {
   const params = useParams();
@@ -64,40 +65,59 @@ export function TaskId() {
     window.location.href = "/";
   }
 
-  const createdFormatted = dayjs(task.createdAt).format("MMMM D, YYYY");
-  const updatedFormatted = dayjs(task.updatedAt).format("MMMM D, YYYY");
+  function handleEdit() {
+    console.log("ddw");
+  }
+
+  dayjs.extend(localizedFormat);
+  const createdFormatted = dayjs(task.createdAt).format("LLL");
+  const updatedFormatted = dayjs(task.updatedAt).format("LLL");
 
   return (
-    <>
-      <main className="flex flex-col items-center w-full min-h-screen p-10 transition-all duration-300 mx-auto space-y-5 ">
-        <Card className="w-full max-w-lg">
-          <CardHeader>
-            <CardTitle>{task.title}</CardTitle>
-            <CardAction className="flex gap-4">
-              <Badge
-                status={task.status.slug as StatusSlug}
-                className="capitalize "
-              >
-                {task.status.name}
-              </Badge>
+    <section className="flex flex-col items-center w-full min-h-screen pt-5 transition-all duration-300 mx-auto space-y-5 ">
+      <Card className="w-4xl h-96">
+        <CardHeader>
+          <CardTitle className="text-xl">{task.title}</CardTitle>
+          <CardAction className="flex justify-center items-center gap-4">
+            <Badge
+              status={task.status.slug as StatusSlug}
+              className="capitalize"
+            >
+              {task.status.name}
+            </Badge>
+            <div className="p-2 hover:bg-slate-200 rounded-full flex justify-center items-center cursor-pointer transition-all ease-in-out duration-200">
+              <RiPencilFill
+                className="text-slate-800 h-5 w-5"
+                onClick={() => handleEdit()}
+              />
+            </div>
+            <div className="p-2 hover:bg-slate-200 rounded-full flex justify-center items-center cursor-pointer transition-all ease-in-out duration-200">
               <RiDeleteBin6Fill
-                className=" text-red-700 cursor-pointer"
+                className=" text-red-700 h-5 w-5"
                 onClick={() => handleDelete(task.id)}
               />
-            </CardAction>
-          </CardHeader>
-          <CardContent className="">
-            <div>
-              <h2 className="text-base font-semibold">Description</h2>
-              {task.description}
             </div>
-            <div className="italic text-xs flex flex-col mt-5">
-              <p>Updated at {updatedFormatted}</p>
-              <p>Created at {createdFormatted}</p>
+          </CardAction>
+        </CardHeader>
+        <CardContent className="h-screen grid grid-rows-4">
+          <div className="row-span-3">
+            <h2 className="text-lg font-semibold">Description</h2>
+            {task.description ? (
+              <p className="text-base text-slate-700">{task.description}</p>
+            ) : (
+              <p className="text-slate-400">Add description...</p>
+            )}
+            <div className="text-slate-900 mt-5">
+              <p className="text-lg font-semibold">Due Date:</p>
+              <p className="text-base text-slate-700">📅Dec 24, 2025</p>
             </div>
-          </CardContent>
-        </Card>
-      </main>
-    </>
+          </div>
+          <div className="text-xs flex flex-col mt-5">
+            <p>Updated at {updatedFormatted}</p>
+            <p>Created at {createdFormatted}</p>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
   );
 }

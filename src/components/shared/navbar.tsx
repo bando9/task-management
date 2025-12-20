@@ -1,10 +1,28 @@
 import { RiGlobalFill, RiKanbanView2, RiTableView } from "@remixicon/react";
-import { Link, useLocation } from "react-router";
+import { Link, matchPath, useLocation } from "react-router";
 
 const menuData = [
-  { id: 1, label: "Backlog", icon: RiTableView, link: "/" },
-  { id: 2, label: "Kanban", icon: RiKanbanView2, link: "/kanban" },
-  { id: 3, label: "Summary", icon: RiGlobalFill, link: "/summary" },
+  {
+    id: 1,
+    label: "Backlog",
+    icon: RiTableView,
+    link: "/",
+    match: ["/", "/tasks/:taskId"],
+  },
+  {
+    id: 2,
+    label: "Kanban",
+    icon: RiKanbanView2,
+    link: "/kanban",
+    match: ["/kanban"],
+  },
+  {
+    id: 3,
+    label: "Summary",
+    icon: RiGlobalFill,
+    link: "/summary",
+    match: ["/summary"],
+  },
 ];
 
 export function NavBar() {
@@ -15,11 +33,15 @@ export function NavBar() {
     <nav>
       <ul className="flex gap-24 w-full justify-center items-center border-b-2 pb-1">
         {menuData.map((item) => {
+          const isActive = item.match.some((path) =>
+            matchPath(path, location.pathname)
+          );
+
           return (
             <li key={item.label}>
               <Link
                 to={item.link}
-                className={`flex gap-1 items-center font-semibold ${location.pathname === item.link ? active : ""} `}
+                className={`flex gap-1 items-center font-semibold ${isActive ? active : ""} `}
               >
                 <item.icon /> {item.label}
               </Link>
