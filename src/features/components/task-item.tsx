@@ -25,7 +25,7 @@ export function TaskItem({
   handleUpdateSelect,
 }: TaskItemProps) {
   return (
-    <li className="mb-3 w-full  border-2 border-blue-300 rounded-lg p-2 flex items-center justify-between">
+    <li className="mb-3 w-full h-11 border-2 border-blue-300 rounded-lg p-2 flex items-center justify-between">
       <div className="w-1/2 flex items-center gap-2">
         <h2 className="text-slate-800 text-base font-semibold capitalize ms-2">
           {task.title}

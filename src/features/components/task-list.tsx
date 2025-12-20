@@ -17,7 +17,7 @@ export function TaskList({
   handleUpdateSelect,
 }: TaskListProps) {
   return (
-    <ScrollArea className="h-82 py-2 px-4 space-y-8 w-4xl border rounded-sm ">
+    <ScrollArea className="h-108 py-2 px-4 space-y-8 w-4xl border rounded-sm ">
       <ul>
         {query
           ? tasks
